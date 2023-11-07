@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -10,9 +10,28 @@ import './ts-exercise-06'
 import './ts-exercise-07'
 import './ts-exercise-08'
 import './ts-exercise-09'
+import './ts-exercise-10'
+import './ts-exercise-11'
+import './ts-exercise-12'
+import { Planet, PlanetsRoot } from './PlanetsTypes'
 
 function App() {
+  //TS Generics - type inference
   const [count, setCount] = useState(0)
+  // TS Generics - explice type definition
+  const [message, setMessage] = useState<string | number>("");
+const [planets, setPlanets] = useState<Planet[]>([]);
+
+  useEffect(() => {
+    async function fetchPlanets() {
+      const result = await fetch('https://swapi.dev/api/planets/?page=1');
+      if(result.ok) {
+        const data: PlanetsRoot = await result.json();
+        setPlanets(data.results);       
+      }
+    }
+    fetchPlanets();
+  }, [])
 
   return (
     <>
@@ -38,6 +57,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>Lista planet <ul>{planets.map(({name}) => <li key={name}>{name}</li>)}</ul></div>
     </>
   )
 }
