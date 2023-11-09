@@ -36,7 +36,7 @@ function App() {
   const [count, setCount] = useState(getDataFromLocalStorage);
   // TS Generics - explice type definition
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //const [message, setMessage] = useState<string | number>('');
+  const [message, setMessage] = useState<string | number>('');
   const [planets, setPlanets] = useState<Planet[]>([]);
 
   // const handleOnClick = () => {
