@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Utility Types
 type AnimalFunction = (name: string) => { name: string };
 const animalFunction: AnimalFunction = (name) => ({ name });
